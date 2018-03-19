@@ -1,3 +1,18 @@
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/compare/1.0.2...2.0.0) (2018-03-19)
+
+
+### Bug Fixes
+
+* **json:** prevent html double-quotes from breaking the map ([1c58a9b](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/1c58a9b))
+
+
+### Features
+
+* **releases:** upgrade for Elgg 3 ([cd5357c](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/cd5357c))
+
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/hypeJunction/hypeMapsOpen/compare/1.0.1...v1.0.2) (2017-06-27)
 
