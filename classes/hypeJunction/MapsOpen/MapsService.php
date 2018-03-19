@@ -2,6 +2,9 @@
 
 namespace hypeJunction\MapsOpen;
 
+use Elgg\Database\QueryBuilder;
+use stdClass;
+
 class MapsService {
 
 	const COOKIE_NAME = 'geop';
@@ -20,6 +23,7 @@ class MapsService {
 	 * </code>
 	 *
 	 * @param string $location Location
+	 *
 	 * @return array
 	 */
 	public function geocode($location = '') {
@@ -32,6 +36,7 @@ class MapsService {
 	 * @param float $lat  Latitude
 	 * @param float $long Longitude
 	 * @param int   $zoom Zoom/precision level
+	 *
 	 * @return string
 	 */
 	public function reverse($lat, $long, $zoom = 12) {
@@ -44,13 +49,16 @@ class MapsService {
 
 	/**
 	 * Get coordinates and location name of the current session
-	 * @return LatLong|void
+	 * @return LatLong|null
 	 */
 	public function getSessionCoordinates() {
 		if (isset($_COOKIE[self::COOKIE_NAME])) {
 			$data = unserialize(base64_decode($_COOKIE[self::COOKIE_NAME]));
+
 			return new LatLong($data['lat'], $data['long'], $data['location']);
 		}
+
+		return null;
 	}
 
 	/**
@@ -59,11 +67,10 @@ class MapsService {
 	 * @param string $location  Location
 	 * @param float  $latitude  Latitude
 	 * @param float  $longitude Longitude
+	 *
 	 * @return stdClass
 	 */
 	public function setSessionCoordinates($location = '', $latitude = 0, $longitude = 0) {
-
-		$location = sanitize_string($location);
 		$lat = (float) $latitude;
 		$long = (float) $longitude;
 
@@ -75,11 +82,11 @@ class MapsService {
 			}
 		}
 
-		$geopositioning = array(
+		$geopositioning = [
 			'location' => $location,
 			'latitude' => $lat,
 			'longitude' => $long
-		);
+		];
 		$cookie_value = base64_encode(serialize($geopositioning));
 
 		$cookie = new \ElggCookie(self::COOKIE_NAME);
@@ -104,6 +111,7 @@ class MapsService {
 				$latlong = LatLong::fromLocation($site_location);
 			}
 		}
+
 		return $latlong;
 	}
 
@@ -111,7 +119,8 @@ class MapsService {
 	 * Export an entity into a map marker
 	 *
 	 * @param \ElggEntity $entity Entity
-	 * @return Marker
+	 *
+	 * @return Marker|false
 	 */
 	public function getMarker(\ElggEntity $entity) {
 
@@ -125,7 +134,7 @@ class MapsService {
 		$marker->title = $entity->getDisplayName();
 		$marker->url = $entity->getURL();
 		$marker->guid = $entity->guid;
-		
+
 		switch ($entity->getType()) {
 			case 'user' :
 				$marker->icon = 'user';
@@ -158,40 +167,22 @@ class MapsService {
 	 * @param LatLong $location Location to search around
 	 * @param int     $radius   Radius (in preferred unit)
 	 * @param string  $query    Search query
+	 *
 	 * @return Marker[]
 	 */
 	public function getMarkers(array $options = [], LatLong $location = null, $radius = 0, $query = '') {
-
-		$type = elgg_extract('type', $options);
-		$subtype = elgg_extract('subtype', $options);
-		if (!$type) {
-			throw new \InvalidParameterException(__METHOD__ . ' requires that entity type be set in $options');
-		}
-
 		if ($location) {
 			$options = $this->addLocationSearchClauses($options, $location, $radius);
 		}
 
 		if ($query) {
-			$results = [
-				'entities' => [],
-				'count' => 0,
-			];
-
 			$options['query'] = $query;
 			$options['search_type'] = 'entities';
-			if ($subtype) {
-				$results = elgg_trigger_plugin_hook('search', "$type:$subtype", $options, $results);
-			}
 
-			if (empty($results['entities'])) {
-				$results = elgg_trigger_plugin_hook('search', $type, $options, $results);
-			}
-
-			$entities = elgg_extract('entities', $results);
+			$entities = elgg_search($options);
 		} else {
 			$options['batch'] = true;
-			$entities = elgg_get_entities_from_relationship($options);
+			$entities = elgg_get_entities($options);
 		}
 
 		$markers = [];
@@ -208,6 +199,7 @@ class MapsService {
 	 * @param array   $options  ege* options
 	 * @param LatLong $location Location to search around
 	 * @param int     $radius   Radius (in preferred unit)
+	 *
 	 * @return array
 	 */
 	public function addLocationSearchClauses(array $options = [], LatLong $location = null, $radius = 0) {
@@ -216,41 +208,39 @@ class MapsService {
 			return $options;
 		}
 
-		$dbprefix = elgg_get_config('dbprefix');
-
 		$lat = (float) $location->getLat();
 		$long = (float) $location->getLong();
 
-		$ms = elgg_get_metastring_map(['geo:lat', 'geo:long']);
+		$options['order_by'] = false;
 
-		$options['joins']['mdlat'] = "JOIN {$dbprefix}metadata mdlat on e.guid = mdlat.entity_guid AND mdlat.name_id = {$ms['geo:lat']}";
-		$options['joins']['msvlat'] = "JOIN {$dbprefix}metastrings msvlat on mdlat.value_id = msvlat.id";
+		$options['wheres'][] = function (QueryBuilder $qb) use ($lat, $long, $radius, $options) {
+			$qb->joinMetadataTable('e', 'guid', 'geo:lat', 'inner', 'mdlat');
+			$qb->joinMetadataTable('e', 'guid', 'geo:long', 'inner', 'mdlong');
 
-		$options['joins']['mdlong'] = "JOIN {$dbprefix}metadata mdlong on e.guid = mdlong.entity_guid AND mdlong.name_id = {$ms['geo:long']}";
-		$options['joins']['msvlong'] = "JOIN {$dbprefix}metastrings msvlong ON mdlong.value_id = msvlong.id";
+			$lat = $qb->param($lat, ELGG_VALUE_STRING);
+			$long = $qb->param($long, ELGG_VALUE_STRING);
 
-		// This will ensure that 'location' metadata access level is respected
-		$optoins['metadata_name_value_pairs'][] = [
-			'name' => 'location',
-			'value' => '',
-			'operand' => '!=',
-		];
+			$proximity = "(((acos(sin(($lat*pi()/180))
+					*sin((mdlat.value*pi()/180))+cos(($lat*pi()/180))
+					*cos((mdlat.value*pi()/180))
+					*cos((($long-mdlong.value)*pi()/180)))))*180/pi())*60*1.1515*1.60934";
 
-		if ($radius) {
-			$options['wheres']['proximity'] = "
-				(((acos(sin(($lat*pi()/180))
-					*sin((msvlat.string*pi()/180))+cos(($lat*pi()/180))
-					*cos((msvlat.string*pi()/180))
-					*cos((($long-msvlong.string)*pi()/180)))))*180/pi())*60*1.1515*1.60934 <= {$radius}";
-		}
+			if (elgg_extract('order_by', $options) == 'proximity') {
+				$qb->addSelect("$proximity AS proximity");
+				$qb->addOrderBy('proximity', 'ASC');
+			}
 
-		if (elgg_extract('order_by', $options) == 'proximity') {
-			$options['selects']['proximity'] = "(((acos(sin(($lat*pi()/180))
-				*sin((msvlat.string*pi()/180))+cos(($lat*pi()/180))
-				*cos((msvlat.string*pi()/180))
-				*cos((($long-msvlong.string)*pi()/180)))))*180/pi())*60*1.1515*1.60934 AS proximity";
-			$options['order_by'] = "proximity ASC, e.time_updated DESC";
-		}
+			$qb->addOrderBy('e.time_updated', 'DESC');
+
+			if ($radius) {
+				return $qb->compare($proximity, 'lte', $radius);
+			}
+
+		};
+
+		$qb = \Elgg\Database\Select::fromTable('entities', 'e');
+		$qb->select('guid')
+			->where($qb->compare('e.time_created', '>=', strtotime('-1 year')));
 
 		return $options;
 	}

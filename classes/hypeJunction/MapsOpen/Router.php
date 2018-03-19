@@ -6,7 +6,7 @@ class Router {
 
 	/**
 	 * Route /maps
-	 * 
+	 *
 	 * @param string $hook   "route"
 	 * @param string $type   "maps"
 	 * @param array  $return Route

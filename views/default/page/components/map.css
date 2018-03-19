@@ -22,27 +22,32 @@
 	min-height: 600px;
 }
 .maps-search-fields {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-end;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: flex-end;
+	margin-bottom: 1rem !important;
 }
 
 .maps-search-fields > .elgg-field {
-    flex: 1 1 auto;
-    padding: 0 5px;
-    margin: 0;
+	flex: 1 1 auto;
+	padding: 0 5px;
+	margin: 0;
 }
 
 .maps-search-fields > .elgg-field:first-of-type {
-    padding-left: 0;
+	padding-left: 0;
 }
 
 .maps-search-fields > .elgg-field:last-of-type {
-    padding-right: 0;
-    flex-grow: 0;
+	padding-right: 0;
+	flex-grow: 0;
 }
 
 .maps-search-fields > .elgg-field input {
-    margin: 0;
+	margin: 0;
+}
+
+.post-map > .elgg-body {
+	padding: 0;
 }

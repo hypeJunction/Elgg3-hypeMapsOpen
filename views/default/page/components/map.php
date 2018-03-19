@@ -13,11 +13,13 @@
  * @uses $vars['show_search'] Display a search form
  * @uses $vars['search_vars'] Search parameters
  */
+
+use hypeJunction\MapsOpen\LatLong;
 use hypeJunction\MapsOpen\MapsService;
 use hypeJunction\MapsOpen\Marker;
-use hypeJunction\MapsOpen\LatLong;
 
-$svc = new MapsService();
+$svc = elgg()->maps;
+/* @var $svc MapsService */
 
 $id = elgg_extract('id', $vars, 'map-' . base_convert(mt_rand(), 10, 36));
 
@@ -34,6 +36,7 @@ foreach ($markers as $key => $marker) {
 	if ($marker instanceof ElggEntity) {
 		$marker = $svc->getMarker($marker);
 	}
+
 	if ($marker instanceof Marker) {
 		$markers[$key] = $marker->toArray();
 	} else {
@@ -52,7 +55,7 @@ if ($src && elgg_extract('show_search', $vars, false)) {
 	$form = elgg_view_form('maps/search', [
 		'action' => $src,
 		'method' => 'GET',
-			], $search_vars);
+	], $search_vars);
 }
 
 $width = elgg_extract('width', $vars);
@@ -60,12 +63,12 @@ $map = elgg_format_element('div', [
 	'id' => $id,
 	'class' => 'maps-map',
 	'data-src' => $src,
-	'data-center' => htmlspecialchars(json_encode($center->toArray()), ENT_QUOTES, 'UTF-8'),
+	'data-center' => json_encode($center->toArray()),
 	'data-layer' => elgg_extract('layer', $vars),
-	'data-layer-opts' => htmlspecialchars(json_encode(elgg_extract('layer_options', $vars)), ENT_QUOTES, 'UTF-8'),
-	'data-markers' => htmlspecialchars(json_encode($markers), ENT_QUOTES, 'UTF-8'),
+	'data-layer-opts' => json_encode(elgg_extract('layer_options', $vars)),
+	'data-markers' => json_encode($markers),
 	'data-zoom' => elgg_extract('zoom', $vars),
-		]);
+]);
 ?>
 <div class="maps-component">
 	<?= $form ?>

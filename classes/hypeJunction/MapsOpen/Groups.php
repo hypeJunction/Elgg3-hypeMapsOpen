@@ -2,11 +2,13 @@
 
 namespace hypeJunction\MapsOpen;
 
+use Elgg\Hook;
+
 class Groups {
 	
 	/**
 	 * Configure group tool options
-	 * 
+	 *
 	 * @param string $hook   "tool_options"
 	 * @param string $type   "group"
 	 * @param array  $return Tool options
@@ -46,6 +48,30 @@ class Groups {
 		}
 
 		$return['location'] = 'location';
+		return $return;
+	}
+
+	/**
+	 * Add group maps tab
+	 *
+	 * @param Hook $hook
+	 *
+	 * @return array|mixed|void
+	 */
+	public static function addMapTab(Hook $hook) {
+		if (!elgg_get_plugin_setting('enable_group_map', 'hypeMapsOpen')) {
+			return;
+		}
+
+		$return = $hook->getValue();
+
+		$return[] = \ElggMenuItem::factory([
+			'name' => 'groups:map',
+			'text' => elgg_echo('maps:open:groups:tab'),
+			'href' => elgg_generate_url('collection:group:group:map'),
+			'priority' => 600,
+		]);
+
 		return $return;
 	}
 }

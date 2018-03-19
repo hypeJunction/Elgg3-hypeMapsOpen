@@ -38,7 +38,6 @@ class Geocoder {
 			$json = $file->grabFile();
 			$file->close();
 		} else {
-
 			$endpoint = elgg_http_add_url_query_elements('http://nominatim.openstreetmap.org/search', [
 				'q' => $location,
 				'format' => 'json',
@@ -71,10 +70,10 @@ class Geocoder {
 		}
 
 		$item = array_shift($data);
-		return array(
+		return [
 			'lat' => $item['lat'],
 			'long' => $item['lon'],
-		);
+		];
 	}
 
 	/**
@@ -109,7 +108,6 @@ class Geocoder {
 			$json = $file->grabFile();
 			$file->close();
 		} else {
-
 			$endpoint = elgg_http_add_url_query_elements('http://nominatim.openstreetmap.org/reverse', [
 				'lat' => $lat,
 				'lon' => $long,
@@ -166,7 +164,10 @@ class Geocoder {
 
 		$entity->geocoded_location = $entity->location;
 
-		$coordinates = (new MapsService())->geocode($entity->location);
+		$svc = elgg()->maps;
+		/* @var $svc MapsService */
+
+		$coordinates = $svc->geocode($entity->location);
 		$lat = elgg_extract('lat', $coordinates) ?: '';
 		$long = elgg_extract('long', $coordinates) ?: '';
 
@@ -175,14 +176,17 @@ class Geocoder {
 
 	/**
 	 * Update entity geocoordinates
+	 *
+	 * @param int $offset Offset
 	 * @return int
 	 */
-	public static function setBatchLatLong() {
+	public static function setBatchLatLong($offset = 0) {
 
 		set_time_limit(0);
 
 		$entities = self::getEntitiesWithoutGeocodes([
 			'batch' => true,
+			'offset' => $offset,
 		]);
 
 		$entities->setIncrementOffset(false);
@@ -204,19 +208,19 @@ class Geocoder {
 
 	/**
 	 * Get entities that are missing geographic coordinates
-	 * 
+	 *
 	 * @param array $options ege* options
 	 * @return ElggEntity[]|false
 	 */
 	public static function getEntitiesWithoutGeocodes(array $options = []) {
 
-		$exclude = array(
+		$exclude = [
 			'messages',
 			'plugin',
 			'widget',
 			'site_notification',
 			'admin_notice',
-		);
+		];
 
 		foreach ($exclude as $k => $e) {
 			$exclude[$k] = get_subtype_id('object', $e);
@@ -228,13 +232,13 @@ class Geocoder {
 		$lat_md = elgg_get_metastring_id('geo:lat');
 		$long_md = elgg_get_metastring_id('geo:long');
 
-		$exclude = array(
+		$exclude = [
 			'messages',
 			'plugin',
 			'widget',
 			'site_notification',
 			'admin_notice',
-		);
+		];
 
 		foreach ($exclude as $k => $e) {
 			$exclude[$k] = get_subtype_id('object', $e);

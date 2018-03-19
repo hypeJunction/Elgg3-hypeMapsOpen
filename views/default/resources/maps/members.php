@@ -1,19 +1,15 @@
 <?php
 
 if (!elgg_get_plugin_setting('enable_group_member_map', 'hypeMapsOpen')) {
-	forward('', '404');
+	throw new \Elgg\PageNotFoundException();
 }
 
 $group_guid = get_input('group_guid');
+elgg_entity_gatekeeper($group_guid, 'group');
+
 $group = get_entity($group_guid);
 
-if (!$group instanceof ElggGroup) {
-	forward('', '404');
-}
-
 elgg_set_page_owner_guid($group->guid);
-
-elgg_group_gatekeeper(true);
 
 $title = elgg_echo('maps:open:members', [$group->getDisplayName()]);
 $content = elgg_view('maps/members', [

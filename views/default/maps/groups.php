@@ -1,7 +1,7 @@
 <?php
 
 echo elgg_view('page/components/map', [
-	'src' => elgg_http_add_url_query_elements('maps/groups', [
+	'src' => elgg_generate_url('collection:group:group:map', [
 		'view' => 'json',
 	]),
 	'show_search' => true,

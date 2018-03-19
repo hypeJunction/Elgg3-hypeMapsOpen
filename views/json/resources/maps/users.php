@@ -1,10 +1,11 @@
 <?php
 
 if (!elgg_get_plugin_setting('enable_user_map', 'hypeMapsOpen', false)) {
-	return;
+	throw new HttpException();
 }
 
-$svc = new \hypeJunction\MapsOpen\MapsService();
+$svc = elgg()->maps;
+/* @var $svc \hypeJunction\MapsOpen\MapsService */
 
 $location = get_input('location');
 $lat = get_input('lat');
@@ -18,7 +19,7 @@ if ($location) {
 	}
 } else if ($lat && $long) {
 	$location = \hypeJunction\MapsOpen\LatLong::fromLatLong($lat, $long);
-} 
+}
 
 if (!$location) {
 	$location = $svc->getDefaultMapCenter();

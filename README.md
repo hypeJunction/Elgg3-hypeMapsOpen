@@ -1,16 +1,12 @@
 hypeMapsOpen for Elgg
 =====================
-![Elgg 2.3](https://img.shields.io/badge/Elgg-2.3-orange.svg?style=flat-square)
+![Elgg 3.0](https://img.shields.io/badge/Elgg-3.0-orange.svg?style=flat-square)
 
 API and UI for maps built with open technology
 
 ## Screenshots
 
 ![User Map](https://raw.github.com/hypeJunction/hypeMapsOpen/master/screenshots/open-maps.png "User Map")
-
-## Acknowledgements
-
- * Plugin has been partially sponsored by [Social Business World] (https://socialbusinessworld.org "Social Business World")
 
 ## Features
 
@@ -109,3 +105,7 @@ elgg_register_plugin_hook_handler('marker', 'object', function($hook, $type, $re
 ### Change popup content
 
 Add a view for `maps/tooltip/<entity_type>/<entity_subtype>` or `maps/tooltip/<entity_type>/default`;
+
+## Acknowledgements
+
+ * Early version of the plugin has been partially sponsored by [Social Business World] (https://socialbusinessworld.org "Social Business World")

@@ -1,21 +1,19 @@
 <?php
 
 if (!elgg_get_plugin_setting('enable_group_member_map', 'hypeMapsOpen')) {
-	forward('', '404');
+	throw new HttpException();
 }
 
-$group_guid = get_input('group_guid');
+$group_guid = elgg_extract('guid', $vars);
+
+elgg_entity_gatekeeper($group_guid, 'group');
+
 $group = get_entity($group_guid);
-
-if (!$group instanceof ElggGroup) {
-	forward('', '404');
-}
 
 elgg_set_page_owner_guid($group->guid);
 
-elgg_group_gatekeeper(true);
-
-$svc = new \hypeJunction\MapsOpen\MapsService();
+$svc = elgg()->maps;
+/* @var $svc \hypeJunction\MapsOpen\MapsService */
 
 $location = get_input('location');
 $lat = get_input('lat');
@@ -29,7 +27,7 @@ if ($location) {
 	}
 } else if ($lat && $long) {
 	$location = \hypeJunction\MapsOpen\LatLong::fromLatLong($lat, $long);
-} 
+}
 
 if (!$location) {
 	$location = $svc->getDefaultMapCenter();

@@ -10,7 +10,7 @@ class LatLong {
 
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @param float  $lat      Latitude
 	 * @param float  $long     Longitude
 	 * @param string $location Location name/address
@@ -24,12 +24,13 @@ class LatLong {
 	/**
 	 * Construct from location address/name
 	 * Get coordinates through geocodong
-	 * 
+	 *
 	 * @param string $location Location
 	 * @return static
 	 */
 	public static function fromLocation($location = '') {
-		$svc = new MapsService();
+		$svc = elgg()->maps;
+		/* @var $svc \hypeJunction\MapsOpen\MapsService */
 		$coords = $svc->geocode($location);
 		return new static($coords['lat'], $coords['long'], $location);
 	}
@@ -43,7 +44,8 @@ class LatLong {
 	 * @return static
 	 */
 	public static function fromLatLong($lat, $long, $zoom = 12) {
-		$svc = new MapsService();
+		$svc = elgg()->maps;
+		/* @var $svc \hypeJunction\MapsOpen\MapsService */
 		$location = $svc->reverse($lat, $long, $zoom);
 		return new static($lat, $long, $location);
 	}
@@ -77,6 +79,10 @@ class LatLong {
 	 * @return array
 	 */
 	public function toArray() {
-		return get_object_vars($this);
+		return [
+			'lat' => $this->getLat(),
+			'long' => $this->getLong(),
+			'location' => $this->getLocation(),
+		];
 	}
 }

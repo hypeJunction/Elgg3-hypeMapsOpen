@@ -6,7 +6,7 @@ class Users {
 
 	/**
 	 * Add map tab to members plugin nav
-	 * 
+	 *
 	 * @param string $hook   "members:config"
 	 * @param string $type   "tabs"
 	 * @param array  $return Tabs
@@ -19,10 +19,11 @@ class Users {
 			return;
 		}
 
-		$return['map'] = [
-			'title' => elgg_echo('maps:open:members:map'),
-			'url' => 'members/map',
-		];
+		$return[] = \ElggMenuItem::factory([
+			'name' => 'map',
+			'text' => elgg_echo('maps:open:members:map'),
+			'href' => elgg_generate_url('collection:user:user:map'),
+		]);
 
 		return $return;
 	}

@@ -12,13 +12,13 @@
 	<version type="dist">1.0.2</version>
 
 	<author>Ismayil Khayredinov (info@hypejunction.com)</author>
-	<website></website>
-	<copyright>(c) 2017 Ismayil Khayredinov</copyright>
+	<website>http://hypejunction.com/</website>
+	<copyright>(c) 2017-2018 Ismayil Khayredinov</copyright>
 	<license>GNU General Public License version 2</license>
 
 	<requires>
 		<type>elgg_release</type>
-		<version>2.3</version>
+		<version>3.0</version>
 	</requires>
-	
+
 </plugin_manifest>

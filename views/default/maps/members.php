@@ -1,13 +1,15 @@
 <?php
 
 $group = elgg_extract('group', $vars);
-if (!$group instanceof ElggGroup || !elgg_group_gatekeeper(false, $group->guid)) {
+try {
+	elgg_entity_gatekeeper($group->guid, 'group');
+} catch (Exception $ex) {
 	return;
 }
 
 echo elgg_view('page/components/map', [
-	'src' => elgg_http_add_url_query_elements('maps/users', [
-		'group_guid' => $group->guid,
+	'src' => elgg_generate_url('view:group:group:members:map', [
+		'guid' => $group->guid,
 		'view' => 'json',
 	]),
 	'show_search' => true,

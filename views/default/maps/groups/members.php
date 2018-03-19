@@ -2,7 +2,9 @@
 
 $group = elgg_get_page_owner_entity();
 
-if (!elgg_group_gatekeeper(false)) {
+try {
+	elgg_entity_gatekeeper($group->guid, 'group');
+} catch (Exception $ex) {
 	return;
 }
 
@@ -10,15 +12,15 @@ if ($group->member_map_enable == 'no') {
 	return;
 }
 
-$all_link = elgg_view('output/url', array(
+$all_link = elgg_view('output/url', [
 	'href' => "groups/members/$group->guid",
 	'text' => elgg_echo('link:view:all'),
 	'is_trusted' => true,
-));
+]);
 
 $content = elgg_view('page/components/map', [
-	'src' => elgg_http_add_url_query_elements('maps/members', [
-		'group_guid' => $group->guid,
+	'src' => elgg_generate_url('view:group:group:members:map', [
+		'guid' => $group->guid,
 		'view' => 'json',
 	]),
 	'show_search' => false,
@@ -28,8 +30,8 @@ $content = elgg_view('page/components/map', [
 	],
 ]);
 
-echo elgg_view('groups/profile/module', array(
+echo elgg_view('groups/profile/module', [
 	'title' => elgg_echo('groups:members'),
 	'content' => $content,
 	'all_link' => $all_link,
-));
+]);
