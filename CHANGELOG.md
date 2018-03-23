@@ -1,3 +1,13 @@
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/compare/2.0.0...2.0.1) (2018-03-23)
+
+
+### Bug Fixes
+
+* **forms:** add location field to all entity types ([e3cc92f](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/e3cc92f))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/compare/1.0.2...2.0.0) (2018-03-19)
 
