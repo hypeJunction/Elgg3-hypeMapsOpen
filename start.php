@@ -61,7 +61,7 @@ return function() {
 
 		elgg_register_plugin_hook_handler('seeds', 'database', [Seeder::class, 'addSeed']);
 
-		elgg_register_plugin_hook_handler('fields', 'object', AddFormField::class);
+		elgg_register_plugin_hook_handler('fields', 'all', AddFormField::class);
 		elgg_register_plugin_hook_handler('modules', 'all', [Post::class, 'addLocationModule']);
 
 		if (elgg()->has('shortcodes')) {
