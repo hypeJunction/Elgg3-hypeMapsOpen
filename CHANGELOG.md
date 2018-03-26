@@ -1,3 +1,13 @@
+<a name="2.0.2"></a>
+## [2.0.2](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/compare/2.0.1...2.0.2) (2018-03-26)
+
+
+### Bug Fixes
+
+* **fields:** do not enable location by default ([0446686](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/0446686))
+
+
+
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/compare/2.0.0...2.0.1) (2018-03-23)
 
