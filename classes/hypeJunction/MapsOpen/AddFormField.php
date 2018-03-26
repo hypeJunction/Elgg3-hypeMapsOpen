@@ -42,7 +42,7 @@ class AddFormField {
 				return null;
 			},
 			'#priority' => 450,
-			'#section' => 'sidebar',
+			'#section' => 'content',
 			'#visibility' => function (ElggEntity $entity) use ($hook) {
 				$params = [
 					'entity' => $entity,
