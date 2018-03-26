@@ -1,3 +1,13 @@
+<a name="2.0.5"></a>
+## [2.0.5](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/compare/2.0.4...2.0.5) (2018-03-26)
+
+
+### Bug Fixes
+
+* **upgrades:** add upgrade scripts ([2d91423](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/2d91423))
+
+
+
 <a name="2.0.4"></a>
 ## [2.0.4](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/compare/2.0.3...2.0.4) (2018-03-26)
 
