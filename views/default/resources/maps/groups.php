@@ -1,7 +1,7 @@
 <?php
 
 if (!elgg_get_plugin_setting('enable_group_map', 'hypeMapsOpen')) {
-	throw new \Elgg\EntityPermissionsException();
+	throw new \Elgg\PageNotFoundException();
 }
 
 $title = elgg_echo('maps:open:groups');

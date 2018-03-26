@@ -1,7 +1,7 @@
 <?php
 
 if (!elgg_get_plugin_setting('enable_group_member_map', 'hypeMapsOpen')) {
-	throw new HttpException();
+	throw new \Elgg\PageNotFoundException();
 }
 
 $group_guid = elgg_extract('guid', $vars);

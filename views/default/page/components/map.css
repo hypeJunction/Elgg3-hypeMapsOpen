@@ -51,3 +51,8 @@
 .post-map > .elgg-body {
 	padding: 0;
 }
+
+.maps-component {
+	z-index: 2;
+	position: relative;
+}

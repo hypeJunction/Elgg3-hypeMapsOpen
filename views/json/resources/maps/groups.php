@@ -1,7 +1,7 @@
 <?php
 
 if (!elgg_get_plugin_setting('enable_group_map', 'hypeMapsOpen', false)) {
-	throw new HttpException();
+	throw new \Elgg\PageNotFoundException();
 }
 
 $svc = elgg()->maps;

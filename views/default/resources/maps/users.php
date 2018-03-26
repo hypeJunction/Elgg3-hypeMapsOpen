@@ -1,7 +1,7 @@
 <?php
 
 if (!elgg_get_plugin_setting('enable_user_map', 'hypeMapsOpen')) {
-	throw new \Elgg\HttpException();
+	throw new \Elgg\PageNotFoundException();
 }
 
 $title = elgg_echo('maps:open:users');
