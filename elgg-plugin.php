@@ -36,4 +36,8 @@ return [
 			],
 		],
 	],
+	'upgrades' => [
+		\hypeJunction\MapsOpen\Upgrades\GeocodeExistingEntityLocations::class,
+		\hypeJunction\MapsOpen\Upgrades\MigrateLocationAnnotations::class,
+	],
 ];

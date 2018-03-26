@@ -27,9 +27,6 @@ return [
 
 	'groups:location' => 'Location',
 
-	'admin:upgrades:maps:geocode' => 'Geocode entity coordinates',
-	'admin:upgrades:maps:geocode:description' => 'Scan all entities with a set location that are missing geo coordinates and geocode them to make sure they are displayed on maps',
-
 	'field:location' => 'Location',
 	'field:location:help' => 'Tag this post with a geographical location',
 
@@ -39,4 +36,11 @@ return [
 	'embed:map:zoom:help' => 'Zoom levels range from 1 (entire surface of the planet) to 5-6 (country level) to 11-13 (city level) to 18 (detailed street level)',
 
 	'profile:location:help' => 'Your location information is public, limit it to your city, region and country',
+
+	'hypeMapsOpen:upgrade:2018032601:title' => 'Revert profile location storage to metadata',
+	'hypeMapsOpen:upgrade:2018032601:description' => 'Latest Elgg version has migrated profile data storage to annotations, which is incompatible with lat/long storage. This will revert location storage changes',
+
+	'hypeMapsOpen:upgrade:2018012101:title' => 'Geocode locations',
+	'hypeMapsOpen:upgrade:2018012101:description' => 'Scan all entities with a set location that are missing geo coordinates and geocode them to make sure they are displayed on maps',
+
 ];
