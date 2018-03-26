@@ -61,8 +61,13 @@ return function() {
 
 		elgg_register_plugin_hook_handler('seeds', 'database', [Seeder::class, 'addSeed']);
 
-		elgg_register_plugin_hook_handler('fields', 'all', AddFormField::class);
-		elgg_register_plugin_hook_handler('modules', 'all', [Post::class, 'addLocationModule']);
+		elgg_register_plugin_hook_handler('fields', 'object', AddFormField::class);
+		elgg_register_plugin_hook_handler('fields', 'group', AddFormField::class);
+		elgg_register_plugin_hook_handler('fields', 'user', AddFormField::class);
+
+		elgg_register_plugin_hook_handler('modules', 'object', [Post::class, 'addLocationModule']);
+		elgg_register_plugin_hook_handler('modules', 'group', [Post::class, 'addLocationModule']);
+		elgg_register_plugin_hook_handler('modules', 'user', [Post::class, 'addLocationModule']);
 
 		if (elgg()->has('shortcodes')) {
 			elgg()->shortcodes->register('map');

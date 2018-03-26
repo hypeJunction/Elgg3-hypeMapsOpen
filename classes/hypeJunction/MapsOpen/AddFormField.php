@@ -52,7 +52,7 @@ class AddFormField {
 					'uses:location',
 					"$entity->type:$entity->subtype",
 					$params,
-					true
+					false
 				);
 			},
 		];
