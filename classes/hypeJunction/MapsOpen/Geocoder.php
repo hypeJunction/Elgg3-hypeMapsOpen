@@ -150,6 +150,11 @@ class Geocoder {
 	 */
 	public static function setEntityLatLong($event, $type, $entity) {
 
+		$location = get_input('location');
+		if ($location && $entity->location != $location) {
+			$entity->setLocation($location);
+		}
+
 		if ($entity->geocoded_location == $entity->location) {
 			return;
 		}

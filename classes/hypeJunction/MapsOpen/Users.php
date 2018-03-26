@@ -37,18 +37,9 @@ class Users {
 	 * @param array  $params Hook params
 	 * @return array
 	 */
-	public static function addLocationField($hook, $type, $return, $params) {
+	public static function removeLocationField($hook, $type, $return, $params) {
+		unset($return['location']);
 
-		if (!elgg_get_plugin_setting('enable_group_member_map', 'hypeMapsOpen')
-				&& !elgg_get_plugin_setting('enable_user_map', 'hypeMapsOpen')) {
-			return;
-		}
-
-		if (array_key_exists('location', $return)) {
-			return;
-		}
-
-		$return['location'] = 'location';
 		return $return;
 	}
 

@@ -37,4 +37,6 @@ return [
 	'embed:map:location' => 'Location',
 	'embed:map:zoom' => 'Zoom',
 	'embed:map:zoom:help' => 'Zoom levels range from 1 (entire surface of the planet) to 5-6 (country level) to 11-13 (city level) to 18 (detailed street level)',
+
+	'profile:location:help' => 'Your location information is public, limit it to your city, region and country',
 ];

@@ -126,6 +126,17 @@ class MapsService {
 
 		$location = $entity->location;
 		if (!$location) {
+			$locations = $entity->getAnnotations([
+				'annotation_names' => 'profile:location',
+				'limit' => 0,
+			]);
+
+			if ($locations) {
+				$location = $locations[0]->value;
+			}
+		}
+
+		if (!$location) {
 			return false;
 		}
 

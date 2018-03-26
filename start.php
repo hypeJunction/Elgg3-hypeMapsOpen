@@ -27,7 +27,7 @@ return function() {
 		// Geocode entity location whenever it's created or updated
 		foreach (['user', 'object', 'group', 'site'] as $type) {
 			elgg_register_event_handler('create', $type, [Geocoder::class, 'setEntityLatLong']);
-			elgg_register_event_handler('update', $type, [Geocoder::class, 'setEntityLatLong']);
+			elgg_register_event_handler('update:after', $type, [Geocoder::class, 'setEntityLatLong']);
 		}
 
 		// Groups
@@ -39,7 +39,8 @@ return function() {
 
 		// Users
 		elgg_register_plugin_hook_handler('register', 'menu:filter:members', [Users::class, 'addMapTab']);
-		elgg_register_plugin_hook_handler('profile:fields', 'profile', [Users::class, 'addLocationField']);
+		elgg_register_plugin_hook_handler('profile:fields', 'profile', [Users::class, 'removeLocationField']);
+		elgg_extend_view('forms/profile/edit', 'forms/profile/location');
 
 		// CSS
 		elgg_extend_view('elgg.css', 'leaflet.css');
