@@ -1,3 +1,13 @@
+<a name="2.0.3"></a>
+## [2.0.3](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/compare/2.0.2...2.0.3) (2018-03-26)
+
+
+### Bug Fixes
+
+* **fields:** move location field to content area ([f6f2ac2](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/f6f2ac2))
+
+
+
 <a name="2.0.2"></a>
 ## [2.0.2](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/compare/2.0.1...2.0.2) (2018-03-26)
 
