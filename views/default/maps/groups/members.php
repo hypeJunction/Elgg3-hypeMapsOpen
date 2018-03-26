@@ -1,6 +1,11 @@
 <?php
 
+if (!elgg_get_plugin_setting('enable_group_member_map', 'hypeMapsOpen')) {
+	return;
+}
+
 $group = elgg_get_page_owner_entity();
+/* @var $group ElggGroup */
 
 try {
 	elgg_entity_gatekeeper($group->guid, 'group');
@@ -8,7 +13,7 @@ try {
 	return;
 }
 
-if ($group->member_map_enable == 'no') {
+if (!$group->isToolEnabled('member_map')) {
 	return;
 }
 

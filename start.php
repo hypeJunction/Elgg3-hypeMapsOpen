@@ -31,7 +31,7 @@ return function() {
 		}
 
 		// Groups
-		add_group_tool_option('member_map');
+		add_group_tool_option('member_map', null, false);
 		elgg_register_plugin_hook_handler('tool_options', 'group', [Groups::class, 'filterToolOptions']);
 		elgg_register_plugin_hook_handler('profile:fields', 'group', [Groups::class, 'addLocationField']);
 		elgg_register_plugin_hook_handler('register', 'menu:filter:groups/all', [Groups::class, 'addMapTab']);
