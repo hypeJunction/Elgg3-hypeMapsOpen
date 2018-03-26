@@ -1,3 +1,15 @@
+<a name="2.0.4"></a>
+## [2.0.4](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/compare/2.0.3...2.0.4) (2018-03-26)
+
+
+### Bug Fixes
+
+* **groups:** do not display group module if sitewide setting is disabled ([5ea2ba2](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/5ea2ba2))
+* **profile:** make location field public and store in metadata ([545187a](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/545187a))
+* **routes:** throw correct exception when feature is disabled ([54904b7](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/54904b7))
+
+
+
 <a name="2.0.3"></a>
 ## [2.0.3](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/compare/2.0.2...2.0.3) (2018-03-26)
 
