@@ -79,10 +79,6 @@ class LatLong {
 	 * @return array
 	 */
 	public function toArray() {
-		return [
-			'lat' => $this->getLat(),
-			'long' => $this->getLong(),
-			'location' => $this->getLocation(),
-		];
+		return get_object_vars($this);
 	}
 }
