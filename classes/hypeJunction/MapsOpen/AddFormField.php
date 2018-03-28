@@ -7,6 +7,7 @@ use DateTimeZone;
 use Elgg\Hook;
 use Elgg\Request;
 use ElggEntity;
+use hypeJunction\Fields\Collection;
 
 class AddFormField {
 
@@ -16,46 +17,17 @@ class AddFormField {
 	 * @param Hook $hook Hook
 	 *
 	 * @return mixed
+	 * @throws \InvalidParameterException
 	 */
 	public function __invoke(Hook $hook) {
 
 		$fields = $hook->getValue();
+		/* @var $fields Collection */
 
-		$fields['location'] = [
-			'#type' => 'location',
-			'#setter' => function (ElggEntity $entity, $value) {
-				$svc = elgg()->{'posts.location'};
-
-				/* @var $svc Post */
-
-				return $svc->setGeoLocation($entity, $value);
-			},
-			'#getter' => function (ElggEntity $entity) {
-				$svc = elgg()->{'posts.location'};
-				/* @var $svc Post */
-
-				$location = $svc->getGeoLocation($entity);
-				if ($location) {
-					return $location->getLocation();
-				}
-
-				return null;
-			},
-			'#priority' => 450,
-			'#section' => 'content',
-			'#visibility' => function (ElggEntity $entity) use ($hook) {
-				$params = [
-					'entity' => $entity,
-				];
-
-				return $hook->elgg()->hooks->trigger(
-					'uses:location',
-					"$entity->type:$entity->subtype",
-					$params,
-					false
-				);
-			},
-		];
+		$fields->add('location', new LocationField([
+			'type' => 'location',
+			'priority' => 450,
+		]));
 
 		return $fields;
 	}
