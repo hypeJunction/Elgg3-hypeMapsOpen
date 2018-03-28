@@ -1,6 +1,15 @@
 .maps-filler {
 	position: relative;
 	margin: 0;
+	width: 100%;
+}
+
+.maps-filler .elgg-ajax-loader {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 50%;
+	margin-top: -1.25rem;
 }
 
 .maps-filler:before {
@@ -21,6 +30,7 @@
 .elgg-module-group .maps-filler {
 	min-height: 600px;
 }
+
 .maps-search-fields {
 	display: flex;
 	flex-wrap: wrap;

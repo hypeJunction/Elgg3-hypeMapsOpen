@@ -72,7 +72,8 @@ $map = elgg_format_element('div', [
 ?>
 <div class="maps-component">
 	<?= $form ?>
-	<div class="maps-filler elgg-ajax-loader">
+	<div class="maps-filler">
+        <div class="elgg-ajax-loader"></div>
 		<?= $map ?>
 	</div>
 </div>

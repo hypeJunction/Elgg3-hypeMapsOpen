@@ -60,7 +60,7 @@ define(function (require) {
 
 			self.map.on('dragend', self.loadMarkers.bind(self));
 
-			self.$map.parent().removeClass('elgg-ajax-loader');
+			self.$map.siblings('.elgg-ajax-loader').remove();
 
 			self.$form.on('submit', self.search.bind(self));
 
