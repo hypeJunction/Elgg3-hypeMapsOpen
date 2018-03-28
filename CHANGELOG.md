@@ -1,3 +1,13 @@
+<a name="2.0.8"></a>
+## [2.0.8](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/compare/2.0.7...2.0.8) (2018-03-28)
+
+
+### Bug Fixes
+
+* **loader:** fix ajax loader positioning ([407cfda](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/407cfda))
+
+
+
 <a name="2.0.7"></a>
 ## [2.0.7](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/compare/2.0.6...2.0.7) (2018-03-28)
 
