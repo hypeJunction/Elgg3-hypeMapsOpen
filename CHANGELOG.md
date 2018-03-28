@@ -1,3 +1,13 @@
+<a name="2.0.7"></a>
+## [2.0.7](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/compare/2.0.6...2.0.7) (2018-03-28)
+
+
+### Bug Fixes
+
+* **fields:** sync with new fields API ([68caf08](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/68caf08))
+
+
+
 <a name="2.0.6"></a>
 ## [2.0.6](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/compare/2.0.5...2.0.6) (2018-03-27)
 
