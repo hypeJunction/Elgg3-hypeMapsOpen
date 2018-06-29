@@ -40,7 +40,7 @@ class Geocoder {
 			$json = $file->grabFile();
 			$file->close();
 		} else {
-			$endpoint = elgg_http_add_url_query_elements('http://nominatim.openstreetmap.org/search', [
+			$endpoint = elgg_http_add_url_query_elements('https://nominatim.openstreetmap.org/search', [
 				'q' => $location,
 				'format' => 'json',
 				'email' => elgg_get_site_entity()->email,

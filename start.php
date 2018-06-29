@@ -31,11 +31,13 @@ return function() {
 		}
 
 		// Groups
-		add_group_tool_option('member_map', null, false);
+		elgg()->group_tools->register('member_map', [
+			'default_on' => false,
+		]);
+
 		elgg_register_plugin_hook_handler('tool_options', 'group', [Groups::class, 'filterToolOptions']);
 		elgg_register_plugin_hook_handler('profile:fields', 'group', [Groups::class, 'addLocationField']);
 		elgg_register_plugin_hook_handler('register', 'menu:filter:groups/all', [Groups::class, 'addMapTab']);
-		elgg_extend_view('groups/tool_latest', 'maps/groups/members');
 
 		// Users
 		elgg_register_plugin_hook_handler('register', 'menu:filter:members', [Users::class, 'addMapTab']);
