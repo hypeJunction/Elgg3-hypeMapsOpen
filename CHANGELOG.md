@@ -1,3 +1,27 @@
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/compare/2.0.0...2.1.0) (2018-06-29)
+
+
+### Bug Fixes
+
+* **fields:** do not enable location by default ([0446686](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/0446686))
+* **fields:** move location field to content area ([f6f2ac2](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/f6f2ac2))
+* **fields:** sync with new fields API ([68caf08](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/68caf08))
+* **forms:** add location field to all entity types ([e3cc92f](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/e3cc92f))
+* **groups:** do not display group module if sitewide setting is disabled ([5ea2ba2](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/5ea2ba2))
+* **loader:** fix ajax loader positioning ([407cfda](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/407cfda))
+* **marker:** fix marker export values ([91cef93](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/91cef93))
+* **profile:** make location field public and store in metadata ([545187a](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/545187a))
+* **routes:** throw correct exception when feature is disabled ([54904b7](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/54904b7))
+* **upgrades:** add upgrade scripts ([2d91423](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/2d91423))
+
+
+### Features
+
+* **core:** updates and fixes ([1ddb5e5](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/1ddb5e5))
+
+
+
 <a name="2.0.8"></a>
 ## [2.0.8](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/compare/2.0.7...2.0.8) (2018-03-28)
 
