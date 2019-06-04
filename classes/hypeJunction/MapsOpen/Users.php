@@ -23,6 +23,7 @@ class Users {
 			'name' => 'map',
 			'text' => elgg_echo('maps:open:members:map'),
 			'href' => elgg_generate_url('collection:user:user:map'),
+			'priority' => 800,
 		]);
 
 		return $return;
