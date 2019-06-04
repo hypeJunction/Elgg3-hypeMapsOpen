@@ -1,3 +1,15 @@
+<a name="2.1.1"></a>
+## [2.1.1](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/compare/2.1.0...2.1.1) (2019-06-04)
+
+
+### Bug Fixes
+
+* **groups:** use correct group module name ([0ca91c3](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/0ca91c3))
+* **js:** use correct FormData values ([cb93ab2](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/cb93ab2))
+* **menus:** give users maps tab a priority ([404c1e9](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/commit/404c1e9))
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/compare/2.0.0...2.1.0) (2018-06-29)
 
