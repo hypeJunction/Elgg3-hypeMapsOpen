@@ -1,3 +1,13 @@
+<a name="2.1.2"></a>
+## [2.1.2](https://github.com/hypeJunction/Elgg3-hypeMapsOpen/compare/2.1.1...2.1.2) (2019-06-04)
+
+
+### Bug Fixes
+
+* **releases:** use correct release url ([e10e258](https://github.com/hypeJunction/Elgg3-hypeMapsOpen/commit/e10e258))
+
+
+
 <a name="2.1.1"></a>
 ## [2.1.1](https://github.com/hypeJunctionPro/Elgg3-hypeMapsOpen/compare/2.1.0...2.1.1) (2019-06-04)
 
