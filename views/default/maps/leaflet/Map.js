@@ -110,19 +110,19 @@ define(function (require) {
 				xhr.abort();
 			}
 
-			var data = {};
-
 			var ajax = new Ajax();
 			var data = ajax.objectify(self.$form);
 
 			var center = self.map.getCenter();
-			data.lat = center.lat;
-			data.long = center.lng;
+
+			data.append('lat', center.lat);
+			data.append('long', center.lng);
 
 			// Get distance in meters from NW to center
-			data.radius = Math.round(self.map.distance(self.map.getBounds().getNorthWest(), center) / 1000);
+			data.append('radius', Math.round(self.map.distance(self.map.getBounds().getNorthWest(), center) / 1000));
+
 			if (self.$form) {
-				self.$form.find('[name="radius"]').val(data.radius);
+				self.$form.find('[name="radius"]').val(data.get('radius'));
 			}
 
 			$.ajax({
@@ -131,19 +131,21 @@ define(function (require) {
 				url: '//nominatim.openstreetmap.org/reverse',
 				data: {
 					format: 'json',
-					lat: data.lat,
-					lon: data.long,
+					lat: data.get('lat'),
+					lon: data.get('long'),
 					zoom: 12,
 				},
 				success: function (response) {
 					if (response.address) {
 						var address = [response.address.city, response.address.state, response.address.country];
 						address = address.filter(Boolean);
-						data.location = address.join(', ');
+						data.append('location', address.join(', '));
+
 						if (self.$form) {
 							self.$form.find('[name="location"]').val(data.location);
 						}
 					}
+
 					xhr = ajax.path(self.data.src, {
 						data: data
 					}).done(self.setMarkers.bind(self));
@@ -159,14 +161,14 @@ define(function (require) {
 			var ajax = new Ajax();
 			var data = ajax.objectify(self.$form);
 
-			if (data.location) {
+			if (data.get('location')) {
 				$.ajax({
 					crossDomain: true,
 					dataType: "json",
 					url: '//nominatim.openstreetmap.org/search',
 					data: {
 						format: 'json',
-						q: data.location
+						q: data.get('location')
 					},
 					success: function (response) {
 						var location = response.shift();
@@ -175,8 +177,8 @@ define(function (require) {
 							var center = new L.LatLng(location.lat, location.lon);
 							self.map.panTo(center);
 
-							data.lat = center.lat;
-							data.long = center.lng;
+							data.append('lat', center.lat);
+							data.append('long', center.lng);
 						}
 
 						xhr = ajax.path(self.data.src, {
