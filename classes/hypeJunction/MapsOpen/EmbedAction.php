@@ -2,7 +2,7 @@
 
 namespace hypeJunction\MapsOpen;
 
-use Elgg\BadRequestException;
+use Elgg\Exceptions\Http\BadRequestException;
 use Elgg\Request;
 
 class EmbedAction {
