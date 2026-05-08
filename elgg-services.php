@@ -1,6 +1,6 @@
 <?php
 
 return [
-	'maps' => \DI\object(\hypeJunction\MapsOpen\MapsService::class),
-	'posts.location' => \DI\object(\hypeJunction\MapsOpen\Post::class),
+	'maps' => \DI\create(\hypeJunction\MapsOpen\MapsService::class),
+	'posts.location' => \DI\create(\hypeJunction\MapsOpen\Post::class),
 ];
