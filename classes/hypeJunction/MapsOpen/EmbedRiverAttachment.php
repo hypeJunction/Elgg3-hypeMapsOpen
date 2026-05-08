@@ -2,7 +2,7 @@
 
 namespace hypeJunction\MapsOpen;
 
-use Elgg\Hook;
+use Elgg\Event;
 
 class EmbedRiverAttachment {
 
@@ -12,9 +12,9 @@ class EmbedRiverAttachment {
 	 * @param $hook Hook Hook
 	 * @return array|null
 	 */
-	public function __invoke(Hook $hook) {
+	public function __invoke(Event $event) {
 
-		$vars = $hook->getValue();
+		$vars = $event->getValue();
 
 		if (!empty($vars['attachments'])) {
 			return null;

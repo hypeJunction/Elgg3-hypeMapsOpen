@@ -2,22 +2,20 @@
 
 namespace hypeJunction\MapsOpen;
 
-use Elgg\Hook;
+use Elgg\Event;
 
 class Groups {
-	
+
 	/**
 	 * Configure group tool options
 	 *
-	 * @param string $hook   "tool_options"
-	 * @param string $type   "group"
-	 * @param array  $return Tool options
-	 * @param array  $params Hook params
+	 * @param Event $event
 	 * @return array
 	 */
-	public static function filterToolOptions($hook, $type, $return, $params) {
+	public static function filterToolOptions(Event $event) {
+		$return = $event->getValue();
 
-		if (!elgg_get_plugin_setting('enable_group_member_map', 'hypeMapsOpen')) {
+		if (!elgg_get_plugin_setting('enable_group_member_map', 'hypemapsopen')) {
 			foreach ($return as $key => $tool) {
 				if ($tool->name == 'member_map') {
 					unset($return[$key]);
@@ -31,15 +29,13 @@ class Groups {
 	/**
 	 * Add location field to group profile fields
 	 *
-	 * @param string $hook   "profile:fields"
-	 * @param string $type   "group"
-	 * @param array  $return Fields
-	 * @param array  $params Hook params
+	 * @param Event $event
 	 * @return array
 	 */
-	public static function addLocationField($hook, $type, $return, $params) {
+	public static function addLocationField(Event $event) {
+		$return = $event->getValue();
 
-		if (!elgg_get_plugin_setting('enable_group_map', 'hypeMapsOpen')) {
+		if (!elgg_get_plugin_setting('enable_group_map', 'hypemapsopen')) {
 			return;
 		}
 
@@ -54,24 +50,19 @@ class Groups {
 	/**
 	 * Add group maps tab
 	 *
-	 * @param Hook $hook
-	 *
-	 * @return array|mixed|void
+	 * @param Event $event
 	 */
-	public static function addMapTab(Hook $hook) {
-		if (!elgg_get_plugin_setting('enable_group_map', 'hypeMapsOpen')) {
+	public static function addMapTab(Event $event) {
+		if (!elgg_get_plugin_setting('enable_group_map', 'hypemapsopen')) {
 			return;
 		}
 
-		$return = $hook->getValue();
-
-		$return[] = \ElggMenuItem::factory([
+		$menu = $event->getValue();
+		$menu->add(\ElggMenuItem::factory([
 			'name' => 'groups:map',
 			'text' => elgg_echo('maps:open:groups:tab'),
 			'href' => elgg_generate_url('collection:group:group:map'),
 			'priority' => 600,
-		]);
-
-		return $return;
+		]));
 	}
 }

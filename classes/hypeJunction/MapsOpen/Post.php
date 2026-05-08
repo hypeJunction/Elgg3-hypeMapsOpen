@@ -2,7 +2,7 @@
 
 namespace hypeJunction\MapsOpen;
 
-use Elgg\Hook;
+use Elgg\Event;
 use ElggEntity;
 
 class Post {
@@ -49,12 +49,12 @@ class Post {
 	/**
 	 * Add location module to post profile
 	 *
-	 * @param Hook $hook
+	 * @param Event $event
 	 *
 	 * @return mixed
 	 */
-	public static function addLocationModule(Hook $hook) {
-		$value = $hook->getValue();
+	public static function addLocationModule(Event $event) {
+		$value = $event->getValue();
 
 		$value['map'] = [
 			'enabled' => true,

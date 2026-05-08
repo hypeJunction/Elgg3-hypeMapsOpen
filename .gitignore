@@ -12,3 +12,4 @@ robots.txt
 composer.lock
 Gemfile.lock
 /yarn.lock
+docker/.env

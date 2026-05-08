@@ -1,18 +1,12 @@
 <?php
 
-$plugin_root = __DIR__;
-$root = dirname(dirname($plugin_root));
-$alt_root = dirname(dirname(dirname($root)));
-
-if (file_exists("$plugin_root/vendor/autoload.php")) {
-	$path = $plugin_root;
-} else if (file_exists("$root/vendor/autoload.php")) {
-	$path = $root;
-} else {
-	$path = $alt_root;
-}
-
 return [
+	'plugin' => [
+		'version' => '5.0.0',
+	],
+
+	'bootstrap' => \hypeJunction\MapsOpen\Bootstrap::class,
+
 	'routes' => [
 		'collection:user:user:map' => [
 			'path' => '/members/map',
@@ -27,17 +21,27 @@ return [
 			'resource' => 'maps/members',
 		],
 	],
+
 	'views' => [
 		'default' => [
 			'/' => [
-				$path . '/vendor/npm-asset/leaflet/dist/',
-				$path . '/vendor/npm-asset/leaflet.awesome-markers/dist/',
-				$path . '/vendor/npm-asset/leaflet.markercluster/dist/',
+				__DIR__ . '/vendor/npm-asset/leaflet/dist/',
+				__DIR__ . '/vendor/npm-asset/leaflet.awesome-markers/dist/',
+				__DIR__ . '/vendor/npm-asset/leaflet.markercluster/dist/',
 			],
 		],
 	],
+
 	'upgrades' => [
 		\hypeJunction\MapsOpen\Upgrades\GeocodeExistingEntityLocations::class,
 		\hypeJunction\MapsOpen\Upgrades\MigrateLocationAnnotations::class,
+	],
+
+	'events' => [
+		'fields' => [
+			'object' => [\hypeJunction\MapsOpen\AddFormField::class => []],
+			'group' => [\hypeJunction\MapsOpen\AddFormField::class => []],
+			'user' => [\hypeJunction\MapsOpen\AddFormField::class => []],
+		],
 	],
 ];

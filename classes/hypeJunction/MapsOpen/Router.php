@@ -24,21 +24,21 @@ class Router {
 
 		switch ($page) {
 			case 'users' :
-				if (elgg_get_plugin_setting('enable_user_map', 'hypeMapsOpen')) {
+				if (elgg_get_plugin_setting('enable_user_map', 'hypemapsopen')) {
 					echo elgg_view_resource('maps/users');
 					return false;
 				}
 				break;
 
 			case 'groups' :
-				if (elgg_get_plugin_setting('enable_group_map', 'hypeMapsOpen')) {
+				if (elgg_get_plugin_setting('enable_group_map', 'hypemapsopen')) {
 					echo elgg_view_resource('maps/groups');
 					return false;
 				}
 				break;
 
 			case 'members' :
-				if (elgg_get_plugin_setting('enable_group_member_map', 'hypeMapsOpen')) {
+				if (elgg_get_plugin_setting('enable_group_member_map', 'hypemapsopen')) {
 					echo elgg_view_resource('maps/members');
 					return false;
 				}
@@ -62,7 +62,7 @@ class Router {
 
 		switch ($page) {
 			case 'map' :
-				if (elgg_get_plugin_setting('enable_user_map', 'hypeMapsOpen')) {
+				if (elgg_get_plugin_setting('enable_user_map', 'hypemapsopen')) {
 					echo elgg_view_resource('maps/users');
 					return false;
 				}

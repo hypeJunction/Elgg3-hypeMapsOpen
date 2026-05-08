@@ -3,9 +3,17 @@
 namespace hypeJunction\MapsOpen;
 
 use Elgg\Database\Seeds\Seed;
-use Elgg\Hook;
+use Elgg\Event;
 
 class Seeder extends Seed {
+
+	public static function getType(): string {
+		return 'hypemapsopen';
+	}
+
+	protected function getCountOptions(): array {
+		return [];
+	}
 
 	/**
 	 * Populate database
@@ -46,12 +54,12 @@ class Seeder extends Seed {
 	/**
 	 * Register this seed
 	 *
-	 * @param Hook $hook
+	 * @param Event $event
 	 *
 	 * @return array|mixed
 	 */
-	public static function addSeed(Hook $hook) {
-		$value = $hook->getValue();
+	public static function addSeed(Event $event) {
+		$value = $event->getValue();
 		$value[] = __CLASS__;
 
 		return $value;

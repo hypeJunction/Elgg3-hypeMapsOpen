@@ -107,7 +107,7 @@ class MapsService {
 			if ($user && $user->location) {
 				$latlong = LatLong::fromLocation($user->location);
 			} else {
-				$site_location = elgg_get_plugin_setting('site_location', 'hypeMapsOpen');
+				$site_location = elgg_get_plugin_setting('site_location', 'hypemapsopen');
 				$latlong = LatLong::fromLocation($site_location);
 			}
 		}

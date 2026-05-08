@@ -2,28 +2,26 @@
 
 namespace hypeJunction\MapsOpen;
 
-use Elgg\Hook;
+use Elgg\Event;
 
 class EmbedMenu {
 
 	/**
 	 * Setup embed menu
 	 *
-	 * @param Hook $hook Hook
+	 * @param Event $event Hook
 	 * @return \ElggMenuItem[]
 	 */
-	public function __invoke(Hook $hook) {
+	public function __invoke(Event $event) {
 
-		$menu = $hook->getValue();
+		$menu = $event->getValue();
 
-		$menu[] = \ElggMenuItem::factory([
+		$menu->add(\ElggMenuItem::factory([
 			'name' => 'map',
 			'text' => elgg_echo('embed:map'),
 			'data' => [
 				'view' => 'embed/tab/map',
 			],
-		]);
-
-		return $menu;
+		]));
 	}
 }

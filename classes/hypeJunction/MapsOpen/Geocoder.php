@@ -3,6 +3,7 @@
 namespace hypeJunction\MapsOpen;
 
 use Elgg\Database\QueryBuilder;
+use Elgg\Event;
 use ElggEntity;
 use ElggFile;
 
@@ -18,14 +19,15 @@ class Geocoder {
 	 *
 	 * @return mixed
 	 */
-	public static function geocode($hook, $type, $return, $params) {
+	public static function geocode(Event $event) {
+		$return = $event->getValue();
 
 		if (!empty($return)) {
 			// location has been geocoded elsewhere
 			return;
 		}
 
-		$location = elgg_extract('location', $params);
+		$location = $event->getParam('location');
 
 		// Try geocache
 		$site = elgg_get_site_entity();
@@ -89,15 +91,16 @@ class Geocoder {
 	 *
 	 * @return mixed
 	 */
-	public static function reverse($hook, $type, $return, $params) {
+	public static function reverse(Event $event) {
+		$return = $event->getValue();
 
 		if (!empty($return)) {
 			return;
 		}
 
-		$lat = elgg_extract('lat', $params);
-		$long = elgg_extract('long', $params);
-		$zoom = elgg_extract('zoom', $params, 12);
+		$lat = $event->getParam('lat');
+		$long = $event->getParam('long');
+		$zoom = $event->getParam('zoom') ?? 12;
 
 		// Try geocache
 		$site = elgg_get_site_entity();
@@ -152,7 +155,8 @@ class Geocoder {
 	 * @param string     $type   "object"|"user"|"group"
 	 * @param ElggEntity $entity Entity
 	 */
-	public static function setEntityLatLong($event, $type, $entity) {
+	public static function setEntityLatLong(Event $event) {
+		$entity = $event->getObject();
 
 		$location = get_input('location');
 		if ($location && $entity->location != $location) {
