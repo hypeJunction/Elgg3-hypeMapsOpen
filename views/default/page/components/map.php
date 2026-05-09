@@ -77,8 +77,8 @@ $map = elgg_format_element('div', [
 		<?= $map ?>
 	</div>
 </div>
-<script>
-	require(['maps/leaflet/Map'], function (Map) {
+<script type="module">
+	import('maps/leaflet/Map').then(({default: Map}) => {
 		var map = new Map(<?= json_encode($id) ?>);
 		map.init();
 	});
