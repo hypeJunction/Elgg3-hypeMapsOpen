@@ -86,7 +86,6 @@ echo elgg_view('page/components/map', [
 Use `'marker','<entity_type>'` hook.
 Supported colors: 'red', 'darkred', 'orange', 'green', 'darkgreen', 'blue', 'purple', 'darkpuple', 'cadetblue'
 
-
 ```php
 
 elgg_register_plugin_hook_handler('marker', 'object', function($hook, $type, $return, $params) {
