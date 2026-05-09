@@ -11,10 +11,10 @@
 	
 	<version type="dist">2.1.2</version>
 
-	<author>Ismayil Khayredinov (info@hypejunction.com)</author>
-	<website>http://hypejunction.com/</website>
-	<copyright>(c) 2017-2018 Ismayil Khayredinov</copyright>
-	<license>https://hypejunction.com/license</license>
+	<author>hypeJunction</author>
+	<website>https://github.com/hypeJunction/hypemapsopen</website>
+	<copyright>(c) hypeJunction</copyright>
+	<license>proprietary</license>
 
 	<requires>
 		<type>elgg_release</type>
