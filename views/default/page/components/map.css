@@ -1,3 +1,12 @@
+:root {
+	--mapsopen-aspect-ratio-padding: 56.25%;
+	--mapsopen-group-map-min-height: 600px;
+	--mapsopen-search-field-gap: 5px;
+	--mapsopen-loader-offset: -1.25rem;
+	--mapsopen-search-margin-bottom: 1rem;
+	--mapsopen-map-zindex: 2;
+}
+
 .maps-filler {
 	position: relative;
 	margin: 0;
@@ -9,14 +18,14 @@
 	left: 0;
 	right: 0;
 	top: 50%;
-	margin-top: -1.25rem;
+	margin-top: var(--mapsopen-loader-offset);
 }
 
 .maps-filler:before {
 	display: block;
 	content: "";
 	width: 100%;
-	padding-top: 56.25%;
+	padding-top: var(--mapsopen-aspect-ratio-padding);
 }
 
 .maps-filler > .maps-map {
@@ -28,7 +37,7 @@
 }
 
 .elgg-module-group .maps-filler {
-	min-height: 600px;
+	min-height: var(--mapsopen-group-map-min-height);
 }
 
 .maps-search-fields {
@@ -36,12 +45,12 @@
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: flex-end;
-	margin-bottom: 1rem !important;
+	margin-bottom: var(--mapsopen-search-margin-bottom) !important;
 }
 
 .maps-search-fields > .elgg-field {
 	flex: 1 1 auto;
-	padding: 0 5px;
+	padding: 0 var(--mapsopen-search-field-gap);
 	margin: 0;
 }
 
@@ -63,6 +72,6 @@
 }
 
 .maps-component {
-	z-index: 2;
+	z-index: var(--mapsopen-map-zindex);
 	position: relative;
 }
