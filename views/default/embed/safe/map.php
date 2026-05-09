@@ -18,4 +18,4 @@ $output = elgg_format_element('div', [
 	'contenteditable' => 'false',
 ], $tag);
 
-echo elgg_trigger_plugin_hook('prepare:map', 'embed', $vars, $output);
+echo elgg_trigger_event_results('prepare:map', 'embed', $vars, $output);

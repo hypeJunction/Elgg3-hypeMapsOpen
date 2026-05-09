@@ -49,15 +49,9 @@ class Bootstrap extends DefaultPluginBootstrap {
 		elgg_extend_view('elgg.css', 'MarkerCluster.css');
 		elgg_extend_view('elgg.css', 'page/components/map.css');
 
-		elgg_define_js('leaflet-markers', [
-			'src' => elgg_get_simplecache_url('leaflet.awesome-markers.min.js'),
-			'deps' => ['leaflet'],
-		]);
+		elgg_register_esm('leaflet-markers', elgg_get_simplecache_url('leaflet.awesome-markers.min.js'));
 
-		elgg_define_js('leaflet-clusters', [
-			'src' => elgg_get_simplecache_url('leaflet.markercluster.js'),
-			'deps' => ['leaflet'],
-		]);
+		elgg_register_esm('leaflet-clusters', elgg_get_simplecache_url('leaflet.markercluster.js'));
 
 		if (elgg()->has('shortcodes')) {
 			elgg()->shortcodes->register('map');

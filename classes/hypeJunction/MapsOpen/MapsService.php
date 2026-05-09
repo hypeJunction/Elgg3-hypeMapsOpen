@@ -27,7 +27,7 @@ class MapsService {
 	 * @return array
 	 */
 	public function geocode($location = '') {
-		return elgg_trigger_plugin_hook('geocode', 'location', ['location' => $location]);
+		return elgg_trigger_event_results('geocode', 'location', ['location' => $location]);
 	}
 
 	/**
@@ -40,7 +40,7 @@ class MapsService {
 	 * @return string
 	 */
 	public function reverse($lat, $long, $zoom = 12) {
-		return elgg_trigger_plugin_hook('geocode', 'latlong', [
+		return elgg_trigger_event_results('geocode', 'latlong', [
 			'lat' => $lat,
 			'long' => $long,
 			'zoom' => $zoom,
@@ -168,7 +168,7 @@ class MapsService {
 
 		$marker->distance = $entity->getVolatileData('select:proximity');
 
-		return elgg_trigger_plugin_hook('marker', $entity->getType(), ['entity' => $entity], $marker);
+		return elgg_trigger_event_results('marker', $entity->getType(), ['entity' => $entity], $marker);
 	}
 
 	/**
