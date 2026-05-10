@@ -1,6 +1,6 @@
 hypeMapsOpen for Elgg
 =====================
-![Elgg 3.0](https://img.shields.io/badge/Elgg-3.0-orange.svg?style=flat-square)
+![Elgg 7.x](https://img.shields.io/badge/Elgg-7.x-orange.svg?style=flat-square)
 
 API and UI for maps built with open technology
 
@@ -108,3 +108,9 @@ Add a view for `maps/tooltip/<entity_type>/<entity_subtype>` or `maps/tooltip/<e
 ## Acknowledgements
 
  * Early version of the plugin has been partially sponsored by [Social Business World] (https://socialbusinessworld.org "Social Business World")
+
+## Compatibility
+
+| Plugin version | Elgg version |
+|---|---|
+| current | 7.x |
