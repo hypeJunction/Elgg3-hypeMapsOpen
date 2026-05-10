@@ -2,7 +2,7 @@
     "name": "hypejunction/hypemapsopen",
     "type": "elgg-plugin",
     "description": "Maps built with open tech",
-    "homepage": "https://github.com/hypeJunction/hypemapsopen",
+    "homepage": "https://github.com/hypeJunction/Elgg3-hypeMapsOpen",
     "keywords": [
         "elgg",
         "plugin",
@@ -16,12 +16,12 @@
     "license": "GPL-2.0-or-later",
     "authors": [
         {
-            "name": "hypeJunction",
-            "homepage": "https://github.com/hypeJunction"
+            "name": "Ismayil Khayredinov",
+            "email": "ismayil.khayredinov@gmail.com"
         }
     ],
     "extra": {
-        "installer-name": "hypeMapsOpen"
+        "installer-name": "hypemapsopen"
     },
     "require": {
         "php": ">=8.3",
@@ -36,5 +36,6 @@
         "psr-0": {
             "": "classes/"
         }
-    }
+    },
+    "version": "2.1.2"
 }
