@@ -35,5 +35,8 @@
 		"psr-0": {
 			"": "classes/"
 		}
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^9.6"
 	}
 }
