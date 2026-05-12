@@ -4,9 +4,12 @@ namespace hypeJunction\MapsOpen;
 
 class LatLong {
 
-	protected $lat;
-	protected $long;
-	protected $location;
+	/** @var mixed */
+    protected $lat;
+	/** @var mixed */
+    protected $long;
+	/** @var mixed */
+    protected $location;
 
 	/**
 	 * Constructor

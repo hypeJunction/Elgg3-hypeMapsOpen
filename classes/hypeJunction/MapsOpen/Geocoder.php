@@ -208,7 +208,7 @@ class Geocoder {
 			$lat = $e->getLatitude();
 			$long = $e->getLongitude();
 			if ($lat && $long) {
-				elgg_log("New coordinates for {$e->getDisplayName()} ({$e->type}:{$e->getSubtype()} $e->guid) [$lat, $long]");
+				elgg()->logger->notice("New coordinates for {$e->getDisplayName()} ({$e->type}:{$e->getSubtype()} $e->guid) [$lat, $long]");
 			}
 			$i++;
 		}
