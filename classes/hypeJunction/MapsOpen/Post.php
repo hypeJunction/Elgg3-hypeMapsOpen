@@ -24,7 +24,7 @@ class Post {
 		$entity->{"geo:lat"} = $latlong->getLat();
 		$entity->{"geo:long"} = $latlong->getLong();
 
-		return elgg_trigger_event('update', 'object:location', $entity);
+		return \elgg_trigger_event('update', 'object:location', $entity);
 	}
 
 	/**
