@@ -67,8 +67,8 @@ class MigrateLocationAnnotations implements Batch {
 	 * @throws \Exception
 	 */
 	public function countItems() {
-		return elgg_call(ELGG_IGNORE_ACCESS | ELGG_SHOW_DISABLED_ENTITIES, function() {
-			return elgg_get_entities([
+		return \elgg_call(ELGG_IGNORE_ACCESS | ELGG_SHOW_DISABLED_ENTITIES, function() {
+			return \elgg_get_entities([
 				'types' => 'user',
 				'annotation_names' => 'profile:location',
 				'count' => true,
@@ -89,8 +89,8 @@ class MigrateLocationAnnotations implements Batch {
 	 * @throws \Exception
 	 */
 	public function run(Result $result, $offset) {
-		return elgg_call(ELGG_IGNORE_ACCESS | ELGG_SHOW_DISABLED_ENTITIES, function() use ($result, $offset) {
-			$users = elgg_get_entities([
+		return \elgg_call(ELGG_IGNORE_ACCESS | ELGG_SHOW_DISABLED_ENTITIES, function() use ($result, $offset) {
+			$users = \elgg_get_entities([
 				'types' => 'user',
 				'annotation_names' => 'profile:location',
 				'batch' => true,

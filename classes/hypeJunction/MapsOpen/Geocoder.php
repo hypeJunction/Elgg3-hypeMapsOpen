@@ -30,7 +30,7 @@ class Geocoder {
 		$location = $event->getParam('location');
 
 		// Try geocache
-		$site = elgg_get_site_entity();
+		$site = \elgg_get_site_entity();
 		$location_hash = md5($location);
 
 		$file = new ElggFile();
@@ -42,10 +42,10 @@ class Geocoder {
 			$json = $file->grabFile();
 			$file->close();
 		} else {
-			$endpoint = elgg_http_add_url_query_elements('https://nominatim.openstreetmap.org/search', [
+			$endpoint = \elgg_http_add_url_query_elements('https://nominatim.openstreetmap.org/search', [
 				'q' => $location,
 				'format' => 'json',
-				'email' => elgg_get_site_entity()->email,
+				'email' => \elgg_get_site_entity()->email,
 				'limit' => 1,
 				'namedetails' => false,
 			]);
@@ -103,7 +103,7 @@ class Geocoder {
 		$zoom = $event->getParam('zoom') ?? 12;
 
 		// Try geocache
-		$site = elgg_get_site_entity();
+		$site = \elgg_get_site_entity();
 		$hash = md5("$lat:$long:$zoom");
 
 		$file = new ElggFile();
@@ -115,11 +115,11 @@ class Geocoder {
 			$json = $file->grabFile();
 			$file->close();
 		} else {
-			$endpoint = elgg_http_add_url_query_elements('http://nominatim.openstreetmap.org/reverse', [
+			$endpoint = \elgg_http_add_url_query_elements('http://nominatim.openstreetmap.org/reverse', [
 				'lat' => $lat,
 				'lon' => $long,
 				'format' => 'json',
-				'email' => elgg_get_site_entity()->email,
+				'email' => \elgg_get_site_entity()->email,
 			]);
 
 			$ch = curl_init();
@@ -145,7 +145,7 @@ class Geocoder {
 			return;
 		}
 
-		return elgg_extract('display_name', $data);
+		return \elgg_extract('display_name', $data);
 	}
 
 	/**
@@ -181,8 +181,8 @@ class Geocoder {
 		/* @var $svc MapsService */
 
 		$coordinates = $svc->geocode($entity->location);
-		$lat = elgg_extract('lat', $coordinates) ? : '';
-		$long = elgg_extract('long', $coordinates) ? : '';
+		$lat = \elgg_extract('lat', $coordinates) ? : '';
+		$long = \elgg_extract('long', $coordinates) ? : '';
 
 		$entity->setLatLong($lat, $long);
 	}
@@ -212,7 +212,7 @@ class Geocoder {
 			$lat = $e->getLatitude();
 			$long = $e->getLongitude();
 			if ($lat && $long) {
-				elgg_log("New coordinates for {$e->getDisplayName()} ({$e->type}:{$e->getSubtype()} $e->guid) [$lat, $long]");
+				\elgg_log("New coordinates for {$e->getDisplayName()} ({$e->type}:{$e->getSubtype()} $e->guid) [$lat, $long]");
 			}
 			$i++;
 		}
@@ -252,8 +252,8 @@ class Geocoder {
 			]);
 		};
 
-		return elgg_call(ELGG_IGNORE_ACCESS | ELGG_SHOW_DISABLED_ENTITIES, function () use ($options) {
-			return elgg_get_entities($options);
+		return \elgg_call(ELGG_IGNORE_ACCESS | ELGG_SHOW_DISABLED_ENTITIES, function () use ($options) {
+			return \elgg_get_entities($options);
 		});
 	}
 

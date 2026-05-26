@@ -27,7 +27,7 @@ class MapsService {
 	 * @return array
 	 */
 	public function geocode($location = '') {
-		return elgg_trigger_event_results('geocode', 'location', ['location' => $location]);
+		return \elgg_trigger_event_results('geocode', 'location', ['location' => $location]);
 	}
 
 	/**
@@ -40,7 +40,7 @@ class MapsService {
 	 * @return string
 	 */
 	public function reverse($lat, $long, $zoom = 12) {
-		return elgg_trigger_event_results('geocode', 'latlong', [
+		return \elgg_trigger_event_results('geocode', 'latlong', [
 			'lat' => $lat,
 			'long' => $long,
 			'zoom' => $zoom,
@@ -77,8 +77,8 @@ class MapsService {
 		if (!$lat || !$long) {
 			$latlong = self::geocode($location);
 			if ($latlong) {
-				$lat = elgg_extract('lat', $latlong);
-				$long = elgg_extract('long', $latlong);
+				$lat = \elgg_extract('lat', $latlong);
+				$long = \elgg_extract('long', $latlong);
 			}
 		}
 
@@ -91,7 +91,7 @@ class MapsService {
 
 		$cookie = new \ElggCookie(self::COOKIE_NAME);
 		$cookie->value = $cookie_value;
-		elgg_set_cookie($cookie);
+		\elgg_set_cookie($cookie);
 
 		return (object) $geopositioning;
 	}
@@ -103,11 +103,11 @@ class MapsService {
 	public function getDefaultMapCenter() {
 		$latlong = $this->getSessionCoordinates();
 		if (!$latlong) {
-			$user = elgg_get_logged_in_user_entity();
+			$user = \elgg_get_logged_in_user_entity();
 			if ($user && $user->location) {
 				$latlong = LatLong::fromLocation($user->location);
 			} else {
-				$site_location = elgg_get_plugin_setting('site_location', 'hypemapsopen');
+				$site_location = \elgg_get_plugin_setting('site_location', 'hypemapsopen');
 				$latlong = LatLong::fromLocation($site_location);
 			}
 		}
@@ -161,14 +161,14 @@ class MapsService {
 				break;
 		}
 
-		$marker->tooltip = elgg_view_entity($entity, [
+		$marker->tooltip = \elgg_view_entity($entity, [
 			'full_view' => false,
 			'item_view' => 'maps/tooltip',
 		]);
 
 		$marker->distance = $entity->getVolatileData('select:proximity');
 
-		return elgg_trigger_event_results('marker', $entity->getType(), ['entity' => $entity], $marker);
+		return \elgg_trigger_event_results('marker', $entity->getType(), ['entity' => $entity], $marker);
 	}
 
 	/**
@@ -190,10 +190,10 @@ class MapsService {
 			$options['query'] = $query;
 			$options['search_type'] = 'entities';
 
-			$entities = elgg_search($options);
+			$entities = \elgg_search($options);
 		} else {
 			$options['batch'] = true;
-			$entities = elgg_get_entities($options);
+			$entities = \elgg_get_entities($options);
 		}
 
 		$markers = [];
@@ -236,7 +236,7 @@ class MapsService {
 					*cos((mdlat.value*pi()/180))
 					*cos((($long-mdlong.value)*pi()/180)))))*180/pi())*60*1.1515*1.60934";
 
-			if (elgg_extract('order_by', $options) == 'proximity') {
+			if (\elgg_extract('order_by', $options) == 'proximity') {
 				$qb->addSelect("$proximity AS proximity");
 				$qb->addOrderBy('proximity', 'ASC');
 			}

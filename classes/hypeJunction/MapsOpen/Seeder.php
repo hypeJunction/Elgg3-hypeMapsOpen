@@ -21,7 +21,7 @@ class Seeder extends Seed {
 	 */
 	function seed() {
 
-		$entities = elgg_get_entities([
+		$entities = \elgg_get_entities([
 			'limit' => 0,
 			'batch' => true,
 			'metadata_name_value_pairs' => [

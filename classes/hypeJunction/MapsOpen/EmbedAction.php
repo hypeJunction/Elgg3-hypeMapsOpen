@@ -17,7 +17,7 @@ class EmbedAction {
 	 */
 	public function __invoke(Request $request) {
 
-		$output = elgg_view('embed/safe/map', [
+		$output = \elgg_view('embed/safe/map', [
 			'location' => $request->getParam('location'),
 			'zoom' => $request->getParam('zoom'),
 		]);
@@ -26,6 +26,6 @@ class EmbedAction {
 			throw new BadRequestException();
 		}
 
-		return elgg_ok_response($output);
+		return \elgg_ok_response($output);
 	}
 }
