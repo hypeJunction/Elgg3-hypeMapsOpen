@@ -17,7 +17,7 @@ class Groups {
 	 */
 	public static function filterToolOptions($hook, $type, $return, $params) {
 
-		if (!elgg_get_plugin_setting('enable_group_member_map', 'hypeMapsOpen')) {
+		if (!\elgg_get_plugin_setting('enable_group_member_map', 'hypeMapsOpen')) {
 			foreach ($return as $key => $tool) {
 				if ($tool->name == 'member_map') {
 					unset($return[$key]);
@@ -39,7 +39,7 @@ class Groups {
 	 */
 	public static function addLocationField($hook, $type, $return, $params) {
 
-		if (!elgg_get_plugin_setting('enable_group_map', 'hypeMapsOpen')) {
+		if (!\elgg_get_plugin_setting('enable_group_map', 'hypeMapsOpen')) {
 			return;
 		}
 
@@ -59,7 +59,7 @@ class Groups {
 	 * @return array|mixed|void
 	 */
 	public static function addMapTab(Hook $hook) {
-		if (!elgg_get_plugin_setting('enable_group_map', 'hypeMapsOpen')) {
+		if (!\elgg_get_plugin_setting('enable_group_map', 'hypeMapsOpen')) {
 			return;
 		}
 
@@ -67,8 +67,8 @@ class Groups {
 
 		$return[] = \ElggMenuItem::factory([
 			'name' => 'groups:map',
-			'text' => elgg_echo('maps:open:groups:tab'),
-			'href' => elgg_generate_url('collection:group:group:map'),
+			'text' => \elgg_echo('maps:open:groups:tab'),
+			'href' => \elgg_generate_url('collection:group:group:map'),
 			'priority' => 600,
 		]);
 

@@ -19,27 +19,27 @@ class Router {
 			return;
 		}
 
-		$segments = elgg_extract('segments', $return);
+		$segments = \elgg_extract('segments', $return);
 		$page = array_shift($segments);
 
 		switch ($page) {
 			case 'users' :
-				if (elgg_get_plugin_setting('enable_user_map', 'hypeMapsOpen')) {
-					echo elgg_view_resource('maps/users');
+				if (\elgg_get_plugin_setting('enable_user_map', 'hypeMapsOpen')) {
+					echo \elgg_view_resource('maps/users');
 					return false;
 				}
 				break;
 
 			case 'groups' :
-				if (elgg_get_plugin_setting('enable_group_map', 'hypeMapsOpen')) {
-					echo elgg_view_resource('maps/groups');
+				if (\elgg_get_plugin_setting('enable_group_map', 'hypeMapsOpen')) {
+					echo \elgg_view_resource('maps/groups');
 					return false;
 				}
 				break;
 
 			case 'members' :
-				if (elgg_get_plugin_setting('enable_group_member_map', 'hypeMapsOpen')) {
-					echo elgg_view_resource('maps/members');
+				if (\elgg_get_plugin_setting('enable_group_member_map', 'hypeMapsOpen')) {
+					echo \elgg_view_resource('maps/members');
 					return false;
 				}
 				break;
@@ -57,13 +57,13 @@ class Router {
 	 */
 	public static function routeMembers($hook, $type, $return, $params) {
 
-		$segments = elgg_extract('segments', $return);
+		$segments = \elgg_extract('segments', $return);
 		$page = array_shift($segments);
 
 		switch ($page) {
 			case 'map' :
-				if (elgg_get_plugin_setting('enable_user_map', 'hypeMapsOpen')) {
-					echo elgg_view_resource('maps/users');
+				if (\elgg_get_plugin_setting('enable_user_map', 'hypeMapsOpen')) {
+					echo \elgg_view_resource('maps/users');
 					return false;
 				}
 				break;

@@ -15,14 +15,14 @@ class Users {
 	 */
 	public static function addMapTab($hook, $type, $return, $params) {
 
-		if (!elgg_get_plugin_setting('enable_user_map', 'hypeMapsOpen')) {
+		if (!\elgg_get_plugin_setting('enable_user_map', 'hypeMapsOpen')) {
 			return;
 		}
 
 		$return[] = \ElggMenuItem::factory([
 			'name' => 'map',
-			'text' => elgg_echo('maps:open:members:map'),
-			'href' => elgg_generate_url('collection:user:user:map'),
+			'text' => \elgg_echo('maps:open:members:map'),
+			'href' => \elgg_generate_url('collection:user:user:map'),
 			'priority' => 800,
 		]);
 

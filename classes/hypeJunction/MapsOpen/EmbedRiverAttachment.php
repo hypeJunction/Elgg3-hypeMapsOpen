@@ -20,7 +20,7 @@ class EmbedRiverAttachment {
 			return null;
 		}
 
-		$item = elgg_extract('item', $vars);
+		$item = \elgg_extract('item', $vars);
 		if (!$item instanceof \ElggRiverItem) {
 			return null;
 		}
@@ -41,17 +41,17 @@ class EmbedRiverAttachment {
 		$matches = $svc->extract($description);
 
 		if (!empty($matches['map'][0])) {
-			$vars['attachments'] = elgg_format_element('div', [
+			$vars['attachments'] = \elgg_format_element('div', [
 				'class' => 'embed-map-listing-preview elgg-river-attachment',
-			], elgg_view('shortcodes/map', $matches['map'][0]));
+			], \elgg_view('shortcodes/map', $matches['map'][0]));
 
 			return $vars;
 		}
 
 		if ($object->location) {
-			$vars['attachments'] = elgg_format_element('div', [
+			$vars['attachments'] = \elgg_format_element('div', [
 				'class' => 'embed-map-listing-preview elgg-river-attachment',
-			], elgg_view('shortcodes/map', [
+			], \elgg_view('shortcodes/map', [
 				'location' => $object->location,
 				'zoom' => 13,
 			]));

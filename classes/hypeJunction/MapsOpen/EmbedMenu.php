@@ -18,7 +18,7 @@ class EmbedMenu {
 
 		$menu[] = \ElggMenuItem::factory([
 			'name' => 'map',
-			'text' => elgg_echo('embed:map'),
+			'text' => \elgg_echo('embed:map'),
 			'data' => [
 				'view' => 'embed/tab/map',
 			],
