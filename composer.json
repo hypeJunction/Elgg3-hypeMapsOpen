@@ -33,8 +33,8 @@
         "npm-asset/leaflet.markercluster": "~1.0"
     },
     "autoload": {
-        "psr-0": {
-            "": "classes/"
+        "psr-4": {
+            "hypeJunction\\MapsOpen\\": "classes/hypeJunction/MapsOpen/"
         }
     }
 }
