@@ -30,5 +30,5 @@ echo elgg_view('object/elements/summary', [
 		'use_hover' => false,
 	]),
 	'tags' => false,
-	'content' => elgg_get_excerpt($entity->description),
+	'content' => elgg_get_excerpt((string) $entity->description),
 ]);
